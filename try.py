@@ -12,7 +12,7 @@ def remove(plainText):
 
 
 plainText = remove(plainText)
-cypherText = ''
+cipherText = ''
 arr = []
 
 
@@ -49,32 +49,64 @@ def findIndex(arr, ch):
                 return i, j
 
 
-def encryption(arr, plainText, cypherText):
+def encryption(arr, plainText, cipherText):
     i = 0
     n = len(plainText)
     while i < n:
         ind1i, ind1j = findIndex(arr, plainText[i])
+        # print(ind1i, ind1j)
         i = i + 1
         if i == n:
             ind2i, ind2j = findIndex(arr, 'X')
+            # print(ind2i, ind2j)
             i = i + 1
         else:
             ind2i, ind2j = findIndex(arr, plainText[i])
+            # print(ind2i, ind2j)
             i = i + 1
         if ind1i == ind2i:
-            cypherText = cypherText + arr[ind1i][(ind1j + 1) % 5]
-            cypherText = cypherText + arr[ind2i][(ind2j + 1) % 5]
+            # print(ind1i, ind2i)
+            cipherText = cipherText + arr[ind1i][(ind1j + 1) % 5]
+            print(cipherText)
+            # print(arr[ind1i][(ind1j + 1) % 5])
+            cipherText = cipherText + arr[ind2i][(ind2j + 1) % 5]
         elif ind1j == ind2j:
-            cypherText = cypherText + arr[(ind1i + 1) % 5][ind1j]
-            cypherText = cypherText + arr[(ind2i + 1) % 5][ind2j]
+            cipherText = cipherText + arr[(ind1i + 1) % 5][ind1j]
+            cipherText = cipherText + arr[(ind2i + 1) % 5][ind2j]
         else:
-            cypherText = cypherText + arr[ind1i][ind2j]
-            cypherText = cypherText + arr[ind2i][ind1j]
+            cipherText = cipherText + arr[ind1i][ind2j]
+            cipherText = cipherText + arr[ind2i][ind1j]
+
+    return cipherText
+
+
+def decryption(arr, plainText, cipherText):
+    i = 0
+    n = len(cipherText)
+    while i < n:
+        ind1i, ind1j = findIndex(arr, cipherText[i])
+        i = i + 1
+        ind2i, ind2j = findIndex(arr, cipherText[i])
+        i = i + 1
+        if ind1i == ind2i:
+            plainText = plainText + arr[ind1i][(ind1j + 1) % 5]
+            plainText = plainText + arr[ind2i][(ind2j + 1) % 5]
+        elif ind1j == ind2j:
+            plainText = plainText + arr[(ind1i + 1) % 5][ind1j]
+            plainText = plainText + arr[(ind2i + 1) % 5][ind2j]
+        else:
+            plainText = plainText + arr[ind1i][ind2j]
+            plainText = plainText + arr[ind2i][ind1j]
+
+    return plainText
 
 
 keyMatrix(arr, key)
 # ch = 'A'
 # indi, indj = findIndex(arr, ch)
 # print(indi, indj)
-encryption(arr, plainText, cypherText)
-print("Cipher text", cypherText)
+cipherText = encryption(arr, plainText, cipherText)
+print("Cipher Text", cipherText)
+
+plaintext = decryption(arr, plainText, cipherText)
+print("Plain Text", plaintext)
