@@ -12,7 +12,6 @@ def remove(plainText):
 
 plainText = remove(plainText)
 
-
 arr = []
 
 
