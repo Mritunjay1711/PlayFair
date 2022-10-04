@@ -36,10 +36,21 @@ def keyMatrix(arr, key):
         row = []
         for j in range(5):
             temp = queue.pop(0)
-            print(temp)
+            print(temp, end = " ")
             row.append(temp)
+        print()
         arr.append(row)
+
+def findIndex(arr, ch):
+    for i, row in enumerate(arr):
+        for j, col in enumerate(row):
+            if arr[i][j] == ch:
+                return i, j;
 
 
 keyMatrix(arr, key)
+ch = 'A'
+indi, indj=findIndex(arr, ch)
+print(indi, indj)
 print(arr)
+
