@@ -1,19 +1,15 @@
 from queue import Queue
 from collections import deque
 from tkinter import N
-plainText = input('Enter the plainText\n')
-key = input('Enter the key\n')
-plainText = plainText.upper()
-key = key.upper()
-
+from easyocr import Reader
+import argparse
+import cv2
 
 def remove(plainText):
     return plainText.replace(" ", "")
 
 
-plainText = remove(plainText)
-cipherText = ''
-arr = []
+
 
 
 def keyMatrix(arr, key):
@@ -67,7 +63,7 @@ def encryption(arr, plainText, cipherText):
         if ind1i == ind2i:
             # print(ind1i, ind2i)
             cipherText = cipherText + arr[ind1i][(ind1j + 1) % 5]
-            print(cipherText)
+            # print(cipherText)
             # print(arr[ind1i][(ind1j + 1) % 5])
             cipherText = cipherText + arr[ind2i][(ind2j + 1) % 5]
         elif ind1j == ind2j:
@@ -100,6 +96,45 @@ def encryption(arr, plainText, cipherText):
 
 #     return plainText
 
+a = input("Enter the way to input the Plain text:\n1 for text\n2 for Image\n")
+if a == "1":
+    plainText = input('Enter the plainText\n')
+elif a == "2":
+    pathImage = input("Enter the path of image: ")
+    language = input("Enter the languages in image: ")
+
+    langs = language.split(", ")
+    print("[INFO] using the following languages: {}".format(langs))
+    image = cv2.imread(pathImage)
+
+    print("[INFO] Performing OCR on input image...")
+    reader = Reader(langs, gpu=1)
+    results = reader.readtext(image)
+
+    plainText = ""
+
+    for(bbox, text, prob) in results:
+        print("[INFO] {:.4f}: {}".format(prob, text))
+        plainText=plainText+text
+        (tl, tr, br, bl) = bbox
+        tl = (int(tl[0]), int(tl[1]))
+        tr = (int(tr[0]), int(tr[1]))
+        br = (int(br[0]), int(br[1]))
+        bl = (int(bl[0]), int(bl[1]))
+
+        cv2.rectangle(image, tl, br, (0, 255, 0), 2)
+        cv2.putText(image, text, (tl[0], tl[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+else: 
+    print("Invalid input!")
+    exit(0)
+
+plainText = remove(plainText)
+print(f"Plain text = {plainText}")
+cipherText = ''
+arr = []
+key = input('Enter the key\n')
+plainText = plainText.upper()
+key = key.upper()
 
 keyMatrix(arr, key)
 # ch = 'A'
