@@ -83,11 +83,11 @@ def decryption(arr, plainText, cipherText):
         ind2i, ind2j = findIndex(arr, cipherText[i])
         i = i + 1
         if ind1i == ind2i:
-            plainText = plainText + arr[ind1i][(ind1j + 1) % 5]
-            plainText = plainText + arr[ind2i][(ind2j + 1) % 5]
+            plainText = plainText + arr[ind1i][(ind1j - 1) % 5]
+            plainText = plainText + arr[ind2i][(ind2j - 1) % 5]
         elif ind1j == ind2j:
-            plainText = plainText + arr[(ind1i + 1) % 5][ind1j]
-            plainText = plainText + arr[(ind2i + 1) % 5][ind2j]
+            plainText = plainText + arr[(ind1i - 1) % 5][ind1j]
+            plainText = plainText + arr[(ind2i - 1) % 5][ind2j]
         else:
             plainText = plainText + arr[ind1i][ind2j]
             plainText = plainText + arr[ind2i][ind1j]
@@ -140,7 +140,7 @@ keyMatrix(arr, key)
 # indi, indj = findIndex(arr, ch)
 # print(indi, indj)
 plainText = decryption(arr, plainText, cipherText)
-print("Cipher Text", plainText)
+print("Plain Text", plainText)
 
 # plaintext = decryption(arr, plainText, cipherText)
 # print("Plain Text", plaintext)
