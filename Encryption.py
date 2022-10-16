@@ -74,25 +74,6 @@ def encryption(arr, plainText, cipherText):
     return cipherText
 
 
-# def decryption(arr, plainText, cipherText):
-#     i = 0
-#     n = len(cipherText)
-#     while i < n:
-#         ind1i, ind1j = findIndex(arr, cipherText[i])
-#         i = i + 1
-#         ind2i, ind2j = findIndex(arr, cipherText[i])
-#         i = i + 1
-#         if ind1i == ind2i:
-#             plainText = plainText + arr[ind1i][(ind1j + 1) % 5]
-#             plainText = plainText + arr[ind2i][(ind2j + 1) % 5]
-#         elif ind1j == ind2j:
-#             plainText = plainText + arr[(ind1i + 1) % 5][ind1j]
-#             plainText = plainText + arr[(ind2i + 1) % 5][ind2j]
-#         else:
-#             plainText = plainText + arr[ind1i][ind2j]
-#             plainText = plainText + arr[ind2i][ind1j]
-
-#     return plainText
 
 a = input("Enter the way to input the Plain text:\n1 for text\n2 for Image\n")
 if a == "1":

@@ -43,37 +43,6 @@ def findIndex(arr, ch):
                 return i, j
 
 
-# def encryption(arr, plainText, cipherText):
-#     i = 0
-#     n = len(plainText)
-#     while i < n:
-#         ind1i, ind1j = findIndex(arr, plainText[i])
-#         # print(ind1i, ind1j)
-#         i = i + 1
-#         if i == n:
-#             ind2i, ind2j = findIndex(arr, 'X')
-#             # print(ind2i, ind2j)
-#             i = i + 1
-#         else:
-#             ind2i, ind2j = findIndex(arr, plainText[i])
-#             # print(ind2i, ind2j)
-#             i = i + 1
-#         if ind1i == ind2i:
-#             # print(ind1i, ind2i)
-#             cipherText = cipherText + arr[ind1i][(ind1j + 1) % 5]
-#             # print(cipherText)
-#             # print(arr[ind1i][(ind1j + 1) % 5])
-#             cipherText = cipherText + arr[ind2i][(ind2j + 1) % 5]
-#         elif ind1j == ind2j:
-#             cipherText = cipherText + arr[(ind1i + 1) % 5][ind1j]
-#             cipherText = cipherText + arr[(ind2i + 1) % 5][ind2j]
-#         else:
-#             cipherText = cipherText + arr[ind1i][ind2j]
-#             cipherText = cipherText + arr[ind2i][ind1j]
-
-#     return cipherText
-
-
 def decryption(arr, plainText, cipherText):
     i = 0
     n = len(cipherText)
