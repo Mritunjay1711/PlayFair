@@ -5,11 +5,9 @@ from easyocr import Reader
 import argparse
 import cv2
 
+
 def remove(plainText):
     return plainText.replace(" ", "")
-
-
-
 
 
 def keyMatrix(arr, key):
@@ -115,7 +113,7 @@ elif a == "2":
 
     for(bbox, text, prob) in results:
         print("[INFO] {:.4f}: {}".format(prob, text))
-        plainText=plainText+text
+        plainText = plainText+text
         (tl, tr, br, bl) = bbox
         tl = (int(tl[0]), int(tl[1]))
         tr = (int(tr[0]), int(tr[1]))
@@ -123,8 +121,9 @@ elif a == "2":
         bl = (int(bl[0]), int(bl[1]))
 
         cv2.rectangle(image, tl, br, (0, 255, 0), 2)
-        cv2.putText(image, text, (tl[0], tl[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-else: 
+        cv2.putText(image, text, (tl[0], tl[1] - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+else:
     print("Invalid input!")
     exit(0)
 
