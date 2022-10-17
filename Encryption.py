@@ -7,8 +7,10 @@ import cv2
 
 
 def remove(plainText):
-    return plainText.replace(" ", "")
-
+    plainText = plainText.replace(" ", "")
+    plainText = plainText.replace(".", "")
+    plainText = plainText.replace(",", "")
+    return plainText
 
 def keyMatrix(arr, key):
     N = 26

@@ -7,7 +7,10 @@ import cv2
 
 
 def remove(cipherText):
-    return cipherText.replace(" ", "")
+    cipherText = cipherText.replace(" ", "")
+    cipherText = cipherText.replace(".", "")
+    cipherText = cipherText.replace(",", "")
+    return cipherText
 
 
 def keyMatrix(arr, key):
