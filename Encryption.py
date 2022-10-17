@@ -1,8 +1,4 @@
-from queue import Queue
-from collections import deque
-from tkinter import N
 from easyocr import Reader
-import argparse
 import cv2
 
 
@@ -50,21 +46,15 @@ def encryption(arr, plainText, cipherText):
     n = len(plainText)
     while i < n:
         ind1i, ind1j = findIndex(arr, plainText[i])
-        # print(ind1i, ind1j)
         i = i + 1
         if i == n:
             ind2i, ind2j = findIndex(arr, 'X')
-            # print(ind2i, ind2j)
             i = i + 1
         else:
             ind2i, ind2j = findIndex(arr, plainText[i])
-            # print(ind2i, ind2j)
             i = i + 1
         if ind1i == ind2i:
-            # print(ind1i, ind2i)
             cipherText = cipherText + arr[ind1i][(ind1j + 1) % 5]
-            # print(cipherText)
-            # print(arr[ind1i][(ind1j + 1) % 5])
             cipherText = cipherText + arr[ind2i][(ind2j + 1) % 5]
         elif ind1j == ind2j:
             cipherText = cipherText + arr[(ind1i + 1) % 5][ind1j]
@@ -119,11 +109,7 @@ plainText = plainText.upper()
 key = key.upper()
 
 keyMatrix(arr, key)
-# ch = 'A'
-# indi, indj = findIndex(arr, ch)
-# print(indi, indj)
 cipherText = encryption(arr, plainText, cipherText)
 print("Cipher Text", cipherText)
 
-# plaintext = decryption(arr, plainText, cipherText)
-# print("Plain Text", plaintext)
+

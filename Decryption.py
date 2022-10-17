@@ -1,8 +1,4 @@
-from queue import Queue
-from collections import deque
-from tkinter import N
 from easyocr import Reader
-import argparse
 import cv2
 
 
@@ -108,11 +104,5 @@ cipherText = cipherText.upper()
 key = key.upper()
 
 keyMatrix(arr, key)
-# ch = 'A'
-# indi, indj = findIndex(arr, ch)
-# print(indi, indj)
 plainText = decryption(arr, plainText, cipherText)
 print("Plain Text", plainText)
-
-# plaintext = decryption(arr, plainText, cipherText)
-# print("Plain Text", plaintext)
